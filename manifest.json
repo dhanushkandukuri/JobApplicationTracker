@@ -1,0 +1,50 @@
+{
+    "manifest_version": 3,
+    "name": "Job Application Tracker",
+    "version": "1.0",
+    "description": "Automatically track job applications in Notion",
+    "permissions": [
+      "activeTab",
+      "storage",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://api.notion.com/*",
+      "https://*.linkedin.com/*",
+      "https://*.greenhouse.io/*",
+      "https://*.lever.co/*",
+      "https://*.workday.com/*",
+      "https://*.smartrecruiters.com/*",
+      "https://*.indeed.com/*",
+      "https://*.glassdoor.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "https://*.linkedin.com/*",
+          "https://*.greenhouse.io/*",
+          "https://*.lever.co/*",
+          "https://*.workday.com/*",
+          "https://*.smartrecruiters.com/*",
+          "https://*.indeed.com/*",
+          "https://*.glassdoor.com/*"
+        ],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "Job Tracker"
+    },
+    "commands": {
+      "track-job": {
+        "suggested_key": {
+          "default": "Alt+Shift+A"
+        },
+        "description": "Track current job application"
+      }
+    }
+  }
